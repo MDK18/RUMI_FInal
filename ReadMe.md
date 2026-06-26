@@ -74,11 +74,11 @@ The vehicle_publisher node is the connection between SUMO and ROS2. Without thes
 
 #### Most important functions
 
-getControlledLinks(JUNCTION_ID): First time start in the boot process and ask TraCi with edges are connected to the traffic sign. The result is saved in self.tls_edges. These function isnt ask every tick because the information dosent change in our scenario.
+**getControlledLinks(JUNCTION_ID)**: First time start in the boot process and ask TraCi with edges are connected to the traffic sign. The result is saved in self.tls_edges. These function isnt ask every tick because the information dosent change in our scenario.
 
-get_approach_edge(): starts every car tick and collect the routes of the car (getRoute(), getRouteIndex()). The founded routes will be compared with the edges in self.tls.edges. If there are the same edges in both, that is the edge the car arrives the junction. These function is nessesary to check the drivong direction of the car to the traffic sign. 
+**get_approach_edge()**: starts every car tick and collect the routes of the car (getRoute(), getRouteIndex()). The founded routes will be compared with the edges in self.tls.edges. If there are the same edges in both, that is the edge the car arrives the junction. These function is nessesary to check the drivong direction of the car to the traffic sign. 
 
-Distance: To calculate if the vehicle is clsoe enaught to be relevant for the traffic sign Priority. Calculation sqrt((x-JUNCTION_X)**2 + (y-JUNCTION_Y)**2)
+**Distance**: To calculate if the vehicle is clsoe enaught to be relevant for the traffic sign Priority. Calculation sqrt((x-JUNCTION_X)**2 + (y-JUNCTION_Y)**2)
 
 At the end of the Node we build the VehicleStatus-Message with ID, typ, position, approach_edge e.g and publish the Node.
 
@@ -129,10 +129,10 @@ To get access with all platforms, we implemented an relativ File where the .csv 
 
 #### Tracked Event typs
 
-Detected: first siding of the vehicle (vehicle_status_callback)
-TSP_ACTIVATED is loged in case of an TLSCommand
-EMERGENCY_OVER_BUS: additional event only if the vehicle type is emergency_type and one or more buses are tracked
-PASSED: Vehicle has left the Junction
+**Detected**: first siding of the vehicle (vehicle_status_callback)
+**TSP_ACTIVATED** is loged in case of an TLSCommand
+**EMERGENCY_OVER_BUS**: additional event only if the vehicle type is emergency_type and one or more buses are tracked
+**PASSED**: Vehicle has left the Junction
 
 #### Tracking logic
 
@@ -141,7 +141,7 @@ Saved for each vehicle is: type, approached_edge, first_seen, last_seen, last ve
 Calculation of the waiting time: At each Update it will check, if speed < WAITING_SPEED_THRESHOLD (0.5). If this case is true we add dt on the waiting_time.
 
 #### important function
-check_passed(): To estimate if the vehicle is outside of the Junction, we impement an Timeout. If PASSED_TIMEOUT_SEC (2.0) didnt send a new vehicleStatus the vehicle is classified as PASSED. 
+**check_passed()**: To estimate if the vehicle is outside of the Junction, we impement an Timeout. If PASSED_TIMEOUT_SEC (2.0) didnt send a new vehicleStatus the vehicle is classified as PASSED. 
 
 ### 4.5 Dashboard_node
 
@@ -151,7 +151,7 @@ The Dashboard node is the human machine connection, thats the only node that doe
 
 First subscribe with vehicle_status and tls_command. Thats two Topics that currently flows between the other nodes.
 
-vehicle_callback(msg) covers for all  vehicles the last known state in self.vehicles including last_seen. 
+**vehicle_callback(msg)** covers for all  vehicles the last known state in self.vehicles including last_seen. 
 
 command_callback(msg): save the last message that comes fprm TLSCommand
 
@@ -176,18 +176,18 @@ Reference runs for each scenario are stored in metrics/reference_runs using the 
 ## 5. Technical Problemes & Solutions
 
 ### Problem 1 – Distancemasurement
-Symptom: If we tried to use the traci.getDrivingDistance function we are confronted with some sporadicaly worng results like that -1073741824.0
-Cause: Thats the number TraCi gets back when something like the Route calculation dosnt work. 
-Solution: Euclidain distance between vehicle coordinates and the Junction coodrinate. (sqrt((x1-x2)² + (y1-y2)²)) 
+**Symptom**: If we tried to use the traci.getDrivingDistance function we are confronted with some sporadicaly worng results like that -1073741824.0
+**Cause**: Thats the number TraCi gets back when something like the Route calculation dosnt work. 
+**Solution**: Euclidain distance between vehicle coordinates and the Junction coodrinate. (sqrt((x1-x2)² + (y1-y2)²)) 
 
 ### Problem 2 – Phasedecison
-Symptom: GREEN_PHASE_INDEX=0 just works randomly 
-Solution: the find_best_phase() function
+**Symptom**: GREEN_PHASE_INDEX=0 just works randomly 
+**Solution**: the find_best_phase() function
 
 ### Problem 3 – Multi-Client TraCI
-Symptom: the second Node (signal_contoller) could not get access with Sumo because the connection is blocked due the first Node. 
-Cause: in default TraCi couldnt allow more than one Connection
-Solution: Start SUMO with --num-clinets 2. That allows taht SUMO wait activly for the second clients. For a robust start the signal controller starts with an delay of three seconds controlled due the launch file , because the signal_controller need the vehicle controller to start.  
+**Symptom**: the second Node (signal_contoller) could not get access with Sumo because the connection is blocked due the first Node. 
+**Cause**: in default TraCi couldnt allow more than one Connection
+**Solution**: Start SUMO with --num-clinets 2. That allows taht SUMO wait activly for the second clients. For a robust start the signal controller starts with an delay of three seconds controlled due the launch file , because the signal_controller need the vehicle controller to start.  
 
 
 ## 6. Setup & Launch 
