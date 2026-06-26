@@ -10,7 +10,7 @@ JUNCTION_ID = 'joinedS_21740280_cluster_1561711296_1561762947_1561762973_2174027
 PRIORITY_TYPES = ('bus_type', 'emergency_type')
 ETA_THRESHOLD = 8             # Sekunden — erst TSP wenn so nah
 GREEN_PHASE_DURATION = 15.0   # wie lange Grün gehalten wird
-TSP_ENABLED = False            # TSP AN/AUS
+TSP_ENABLED = True             # TSP AN/AUS
 RELEASE_TIMEOUT = 2.0         # Sekunden — nach Ablauf wird TSP wieder freigegeben
 
 # GREEN_PHASE_INDEX wird nicht mehr fest vorgegeben — signal_controller
