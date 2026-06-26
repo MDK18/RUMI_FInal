@@ -5,6 +5,8 @@
 **Abgabe:** 26.06.2026
 **Zielkreuzung:** TechCampus Heilbronn
 
+Attention: For some comments in the text, Claude was used as a tutor, or VS Code's automatic comment completion. Where AI was used for code sections, the AI was used only as a tutor, not as a 'do this for me' tool. This section is marked accordingly.
+
 ---
 
 ## 1. Projektüberblick
@@ -26,11 +28,11 @@ The systemarchitecture is showed in the follwing Table.
 
 | Node | Subscribed | Published | Task |
 |---|---|---|---|
-| vehicle_publisher | TraCI (SUMO) | `/vehicle_status` | Reads vehicle data from SUMO |
-| tsp_controller | `/vehicle_status` | `/tls_command` | Priority decision logic |
-| signal_controller | `/tls_command` | TraCI (SUMO) | Controls the traffic light |
-| metrics_logger | `/vehicle_status`, `/tls_command` | – | Logs events for evaluation |
-| dashboard_node | `/vehicle_status`, `/tls_command` | – | Terminal visualization for the human operator |
+| vehicle_publisher | TraCI (SUMO) | vehicle_status | Reads vehicle data from SUMO |
+| tsp_controller | vehicle_status | tls_command | Priority decision logic |
+| signal_controller |tls_command | TraCI (SUMO) | Controls the traffic light |
+| metrics_logger | vehicle_status, tls_command | – | Logs events for evaluation |
+| dashboard_node | vehicle_status, tls_command | – | Terminal visualization for the human operator |
 
 The dataflow is in a cirle: SUMO , vehicle_publisher, tsp_controller, signal_controler, SUMO. The dession is based on a 4 Node architecure, which allows to seperate the data containing, the desision, actuatoric, logging. In addition, dashboard_node taps into the same two topics passively to provide a human-readable live view, without influencing the control loop.
 
@@ -167,7 +169,7 @@ To evaluate the effect of TSP, the metrics CSVs can be compared between two runs
 - one run with TSP_ENABLED = True (normal operation)
 - one run with TSP_ENABLED = False (baseline, no priority logic active)
 
-Reference runs for each scenario are stored in `metrics/reference_runs/` using the naming pattern `<scenario>_tsp_<on|off>.csv`. Comparing the two files for a given scenario shows the actual impact of TSP on the priority vehicles.
+Reference runs for each scenario are stored in metrics/reference_runs using the naming pattern <scenario>_tsp_<on|off>.csv. Comparing the two files for a given scenario shows the actual impact of TSP on the priority vehicles.
 
 
 
@@ -188,7 +190,8 @@ Cause: in default TraCi couldnt allow more than one Connection
 Solution: Start SUMO with --num-clinets 2. That allows taht SUMO wait activly for the second clients. For a robust start the signal controller starts with an delay of three seconds controlled due the launch file , because the signal_controller need the vehicle controller to start.  
 
 
-## 6. Setup & Launch
+## 6. Setup & Launch 
+The Chapter structure and the discribtion is done by our own and the Code is done with help of Claude in hope that the configurations and start are possible.
 
 ### Prerequisites (assumed already installed)
 - ROS2 Humble

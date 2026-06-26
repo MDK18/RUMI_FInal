@@ -39,7 +39,7 @@ class SignalController(Node):
         self.phases = []          # Liste von Signalzustand-Strings, Index = Phasenindex
         try:
             links = traci.trafficlight.getControlledLinks(TLS_ID)
-            self.get_logger().info(f'DEBUG: Anzahl Links = {len(links)}')
+            self.get_logger().info(f' Anzahl Links = {len(links)}')
             for i, link_group in enumerate(links):
             
                 for (from_lane, to_lane, via_lane) in link_group:
@@ -48,22 +48,22 @@ class SignalController(Node):
                     self.edge_to_links.setdefault(from_edge, []).append(i)
 
             logic = traci.trafficlight.getAllProgramLogics(TLS_ID)
-            self.get_logger().info(f'DEBUG: Anzahl Programme = {len(logic)}')
+            self.get_logger().info(f' Anzahl Programme = {len(logic)}')
             if logic:
                 self.phases = [phase.state for phase in logic[0].phases]
                 for phase_idx, state in enumerate(self.phases):
                     self.get_logger().info(f'Phase {phase_idx}: state={state}')
 
             self.get_logger().info(
-                f'DEBUG: Edge-Mapping aufgebaut, {len(self.edge_to_links)} Edges bekannt'
+                f' Anzahl Edges bekannt: {len(self.edge_to_links)}'
             )
         except Exception as e:
-            self.get_logger().error(f'DEBUG TraCI-Abfrage fehlgeschlagen: {e}')
+            self.get_logger().error(f' TraCI-Abfrage fehlgeschlagen: {e}')
 
         # Sync-Timer: signalisiert SUMO regelmäßig dass Order 2 bereit ist
         self.sync_timer = self.create_timer(0.1, self.sync_callback)
 
-    def find_best_phase(self, approach_edge):
+    def find_best_phase(self, approach_edge): #Claude as Tutor
         """Ermittelt die Phase, die für die gegebene Anfahrtsedge das meiste
         bevorrechtigte Grün ('G') bietet. Fällt auf nachrangiges Grün ('g')
         zurück, falls keine Phase echtes Vorfahrts-Grün hat.
@@ -119,7 +119,7 @@ class SignalController(Node):
         target_phase = self.find_best_phase(msg.approach_edge)
         if target_phase is None:
             self.get_logger().error(
-                f'Konnte keine passende Phase fuer Edge {msg.approach_edge} bestimmen, ueberspringe Schaltung'
+                f'Konnte keine passende Phase für Edge {msg.approach_edge} bestimmen, ueberspringe Schaltung'
             )
             return
 

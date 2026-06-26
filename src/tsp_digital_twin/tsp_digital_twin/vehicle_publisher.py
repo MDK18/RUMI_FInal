@@ -53,7 +53,7 @@ class VehiclePublisher(Node):
                 for (from_lane, to_lane, via_lane) in link_group:
                     from_edge = from_lane.rsplit('_', 1)[0]
                     self.tls_edges.add(from_edge)
-            self.get_logger().info(f'DEBUG: {len(self.tls_edges)} TLS-bekannte Edges ermittelt')
+            self.get_logger().info(f' {len(self.tls_edges)} TLS-bekannte Edges ermittelt')
         except Exception as e:
             self.get_logger().error(f'Konnte TLS-Edges nicht ermitteln: {e}')
 
@@ -92,14 +92,14 @@ class VehiclePublisher(Node):
                 if vehicle_id not in self.active_vehicles:
                     self.active_vehicles.add(vehicle_id)
                     self.get_logger().info(f'ANMELDUNG: {vehicle_id} ({vehicle_type})')
-                    # DEBUG: einmalig Route und aktuelle Edge ausgeben
+                    #  einmalig Route und aktuelle Edge ausgeben
                     try:
                         route = traci.vehicle.getRoute(vehicle_id)
                         current_edge = traci.vehicle.getRoadID(vehicle_id)
-                        self.get_logger().info(f'DEBUG ROUTE {vehicle_id}: {route}')
-                        self.get_logger().info(f'DEBUG CURRENT EDGE {vehicle_id}: {current_edge}')
+                        self.get_logger().info(f' ROUTE {vehicle_id}: {route}')
+                        self.get_logger().info(f' CURRENT EDGE {vehicle_id}: {current_edge}')
                     except Exception as e:
-                        self.get_logger().error(f'DEBUG ROUTE fehlgeschlagen: {e}')
+                        self.get_logger().error(f' ROUTE fehlgeschlagen: {e}')
 
                 # Aktuelle Position-Edge und daraus die nächste TLS-bekannte
                 # Anfahrtsedge aus der Restroute ermitteln.
