@@ -1,0 +1,4 @@
+# Ignoriere alle CSV-Dateien...
+*.csv
+# ...außer denen in reference_runs/
+!reference_runs/*.csv

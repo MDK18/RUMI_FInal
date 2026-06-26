@@ -1,0 +1,4 @@
+timestamp,event,vehicle_id,vehicle_type,approach_edge,eta_seconds,speed,waiting_time_sec,duration_sec,reason
+2026-06-25T20:51:52.548,DETECTED,bus_0,bus_type,-834140092,14.37,13.87,,,
+2026-06-25T20:51:59.244,TSP_ACTIVATED,bus_0,bus_type,-834140092,,,,15.00,TSP for bus_0 (bus_type)
+2026-06-25T20:52:20.424,PASSED,bus_0,bus_type,-174904016,,13.84,0.00,,

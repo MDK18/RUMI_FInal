@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+  <vType id="car_passenger" vClass="passenger"/>
+
+  <!-- Flow 1: Nord-Süd - kommt von weit oben -->
+  <flow id="flow_ns" type="car_passenger" begin="0" end="120" period="8"
+        departLane="best" departSpeed="max">
+    <route edges="142709279#0 142709279#1 219525485 174904014#0 -174904014#0 -219525485 -36268957#2 -174904017 -174904016"/>
+  </flow>
+
+  <!-- Flow 2: Süd-Nord - kommt von weit unten -->
+  <flow id="flow_sn" type="car_passenger" begin="5" end="120" period="9"
+        departLane="best" departSpeed="max">
+    <route edges="-219525484#1 -219525484#0 -174904014#1 -174904014#0 -219525485 -36268957#2 -174904017 -174904016 -1436456312"/>
+  </flow>
+
+  <!-- Flow 3: Ost-West - langer Anflug -->
+  <flow id="flow_ew" type="car_passenger" begin="10" end="120" period="10"
+        departLane="best" departSpeed="max">
+    <route edges="219525493#0 219525493#1 -219525493#1 -219525493#0 -1071307410 -834140092 -174904017 -174904016"/>
+  </flow>
+
+  <!-- Flow 4: West-Ost - kommt von weit hinten -->
+  <flow id="flow_we" type="car_passenger" begin="15" end="120" period="12"
+        departLane="best" departSpeed="max">
+    <route edges="142707482 174904017 834140092 1071307410 219525493#0 219525493#1"/>
+  </flow>
+
+  <!-- Flow 5: Diagonal mit Anlauf -->
+  <flow id="flow_diag" type="car_passenger" begin="20" end="120" period="11"
+        departLane="best" departSpeed="max">
+    <route edges="-373042860#0 -136516921#2 136516921#2 373042860#0 373042860#1 142709278#0 142709278#1 -174904017 -174904016"/>
+  </flow>
+
+</routes>

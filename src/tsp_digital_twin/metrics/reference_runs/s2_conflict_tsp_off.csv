@@ -1,0 +1,5 @@
+timestamp,event,vehicle_id,vehicle_type,approach_edge,eta_seconds,speed,waiting_time_sec,duration_sec,reason
+2026-06-25T21:38:58.721,DETECTED,bus_0,bus_type,-834140092,14.37,13.87,,,
+2026-06-25T21:39:04.827,DETECTED,emergency_0,emergency_type,174904013#0,19.78,8.29,,,
+2026-06-25T21:39:56.505,PASSED,bus_0,bus_type,-174904016,,13.83,19.00,,
+2026-06-25T21:40:19.005,PASSED,emergency_0,emergency_type,219525493#1,,13.86,40.90,,

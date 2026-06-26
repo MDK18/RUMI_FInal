@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+  <vType id="bus_type"
+         vClass="bus"
+         length="12.0"
+         maxSpeed="13.89"
+         accel="1.2"
+         decel="4.0"
+         sigma="0.5"
+         color="0,0,255"/>
+
+  <trip id="bus_0"
+        type="bus_type"
+        depart="30"
+        from="-219525493#1"
+        to="-174904016"
+        departLane="best"
+        departSpeed="max"/>
+
+</routes>

@@ -1,0 +1,9 @@
+timestamp,event,vehicle_id,vehicle_type,approach_edge,eta_seconds,speed,waiting_time_sec,duration_sec,reason
+2026-06-25T21:34:11.161,DETECTED,bus_0,bus_type,-834140092,14.37,13.87,,,
+2026-06-25T21:34:17.250,DETECTED,emergency_0,emergency_type,174904013#0,19.78,8.29,,,
+2026-06-25T21:34:17.750,TSP_ACTIVATED,bus_0,bus_type,-834140092,,,,15.00,TSP for bus_0 (bus_type)
+2026-06-25T21:34:23.163,TSP_ACTIVATED,emergency_0,emergency_type,174904013#0,,,,15.00,TSP for emergency_0 (emergency_type)
+2026-06-25T21:34:23.164,EMERGENCY_OVER_BUS,emergency_0,emergency_type,174904013#0,,,,15.00,over bus bus_0
+2026-06-25T21:34:47.502,TSP_ACTIVATED,,,-834140092,,,,15.00,TSP RESUMED for bus_0 after emergency
+2026-06-25T21:34:47.519,PASSED,emergency_0,emergency_type,219525493#1,,13.87,0.00,,
+2026-06-25T21:35:10.019,PASSED,bus_0,bus_type,-174904016,,13.86,23.39,,
